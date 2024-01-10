@@ -24,13 +24,7 @@
                 <form method="post" action="{{ url('register') }}" enctype="multipart/form-data">
                     @csrf
 
-                    <div class="mb-4">
-                        @error('username')
-                            <div class="text-red-500">{{ $username }}</div>
-                        @enderror
 
-
-                    </div>
                     <div class=" w-full flex text-center  text-md py-2 mt-3">
 
                         <label>UserName</label><span class="text-red-700 font-bold px-2"> * </span>
@@ -39,13 +33,13 @@
 
                     <div class=" w-full flex text-center  text-md ">
 
-                        <input type="text" class="border rounded w-full p-2 outline-none"name="username" id="username"
+                        <input type="text" class="border rounded text-black w-full p-2 outline-none" name="username" id="username"
                             placeholder="Enter your Username">
 
                     </div>
                     <div class="mb-4">
                         @error('username')
-                            <div class="text-red-500">{{ $username }}</div>
+                            <div class="text-red-500">{{ $message }}</div>
                         @enderror
 
 
@@ -56,7 +50,7 @@
 
                     </div>
                     <div class=" w-full flex text-center  text-md ">
-                        <input type="email" class="border rounded w-full p-2 outline-none"name="email" id="email"
+                        <input type="email" class="border rounded text-black w-full p-2 outline-none"name="email" id="email"
                             placeholder="Enter your Email">
                     </div>
                     <div class="mb-4">
@@ -72,8 +66,15 @@
 
                     </div>
                     <div class=" w-full flex text-center  text-md ">
-                        <input type="password" class="border rounded w-full p-2 outline-none"name="password" id="password"
+                        <input type="password" class="border text-black rounded w-full p-2 outline-none"name="password" id="password"
                             placeholder="Enter your Password">
+                    </div>
+                    <div class="mb-4">
+                        @error('password')
+                            <div class="text-red-500">{{ $message }}</div>
+                        @enderror
+
+
                     </div>
                     <div class=" w-full flex text-center  text-md py-3 ">
                         <button type="submit"
@@ -84,7 +85,7 @@
 
                 </form>
                 <div class=" w-full flex text-center  text-md py-3  gap-3">
-                    <label>Have Account ? </label><a href="auth/login" class="text-blue-700">Login Here</a>
+                    <label>Have Account ? </label><a href="/login" class="text-blue-700">Login Here</a>
                 </div>
 
 

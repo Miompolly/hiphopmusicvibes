@@ -22,7 +22,7 @@
 
                 @guest
                     <a href="/login" class="hover:text-gray-300">Login</a>
-                    <a href="/auth/signup" class="hover:text-gray-300">Signup</a>
+                    <a href="/signup" class="hover:text-gray-300">Signup</a>
                 @else
 
                     <a href="#" class="hover:text-gray-300">Profile</a>
