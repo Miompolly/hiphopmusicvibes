@@ -41,31 +41,18 @@
                     </div>
 
                     <div class="w-full flex text-center text-md py-2 mt-3">
-                        <label>Upload</label><span class="text-red-700 font-bold px-2">*</span>
+                        <label>Audio File</label><span class="text-red-700 font-bold px-2">*</span>
                     </div>
                     <div class="w-full flex text-center text-md">
-                        <select name="media_type" id="media_type"
-                            class="border rounded text-black w-full p-2 outline-none">
-                            <option value="audio">Audio</option>
-                            <option value="video">Video</option>
-                        </select>
+                        <input type="file" name="audio_file" accept="audio/*" class="border text-black rounded w-full p-2 outline-none">
                     </div>
 
                     <div class="w-full flex text-center text-md py-2 mt-3">
-                        <label>Main Media File</label><span class="text-red-700 font-bold px-2">*</span>
+                        <label>Cover Image</label><span class="text-red-700 font-bold px-2">*</span>
                     </div>
                     <div class="w-full flex text-center text-md">
-                        <input type="file" name="media_file" accept="{{ session('media_type') == 'audio' ? 'audio/*' : 'video/*' }}" class="border text-black rounded w-full p-2 outline-none">
+                        <input type="file" name="cover_image" accept="image/*" class="border text-black rounded w-full p-2 outline-none">
                     </div>
-
-                    @if (session('media_type') == 'video')
-                        <div class="w-full flex text-center text-md py-2 mt-3">
-                            <label>Cover Image</label><span class="text-red-700 font-bold px-2">*</span>
-                        </div>
-                        <div class="w-full flex text-center text-md">
-                            <input type="file" name="cover_image" accept="image/*" class="border text-black rounded w-full p-2 outline-none">
-                        </div>
-                    @endif
 
                     <div class="w-full flex text-center text-md py-3">
                         <button type="submit"
@@ -74,6 +61,7 @@
                         </button>
                     </div>
                 </form>
+
 
             </div>
         </div>
