@@ -23,6 +23,9 @@ Route::get('/signup', function () {
 Route::get('/login', function () {
     return view('pages.login');
 });
+Route::get('/dashboard', function () {
+    return view('pages.dashboard');
+});
 
 Route::post('/register', [UsersController::class, 'createUser']);
 Route::any('/loginUser', [UsersController::class, 'loginUser']);
