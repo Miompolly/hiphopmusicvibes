@@ -21,7 +21,7 @@
                     @endif
                 </div>
 
-                <form method="post" action="{{ url('uploadMusic') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('songs') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="w-full flex text-center text-md py-2 mt-3">

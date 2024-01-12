@@ -1,5 +1,8 @@
 <?php
 
+
+
+use App\Http\Controllers\SongController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +33,5 @@ Route::get('/dashboard', function () {
 Route::post('/register', [UsersController::class, 'createUser']);
 Route::any('/loginUser', [UsersController::class, 'loginUser']);
 
+Route::get('/songs/create', [SongController::class, 'create'])->name('song.create');
+Route::post('/songs', [SongController::class, 'store'])->name('song.store');

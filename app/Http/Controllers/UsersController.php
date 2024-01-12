@@ -29,7 +29,7 @@ class UsersController extends Controller
 
         if ($user && password_verify($password, $user->password)) {
 
-            return redirect('/');
+            return redirect('/dashboard');
         } else {
 
             return redirect('/login')->with('error', 'Invalid credentials');
