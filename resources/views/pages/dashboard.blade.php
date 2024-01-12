@@ -1,5 +1,5 @@
 @extends('layouts.dash')
-@section('title', 'Login-on-Hip-Hop Music Vibes')
+@section('title', 'Upload-on-Hip-Hop Music Vibes')
 
 @section('content')
     <div class="items-center justify-center flex">
@@ -21,7 +21,7 @@
                     @endif
                 </div>
 
-                <form method="post" action="{{ url('loginUser') }}" enctype="multipart/form-data">
+                <form method="post" action="{{ url('uploadMusic') }}" enctype="multipart/form-data">
                     @csrf
 
                     <div class="w-full flex text-center text-md py-2 mt-3">
