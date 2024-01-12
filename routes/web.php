@@ -1,9 +1,6 @@
 <?php
 
-
-
-use App\Http\Controllers\SongController;
-use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,20 +15,17 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('pages.index');
+    return view('welcome');
 });
-Route::get('/signup', function () {
-    return view('pages.signup');
-});
-Route::get('/login', function () {
-    return view('pages.login');
-});
+
 Route::get('/dashboard', function () {
-    return view('pages.dashboard');
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/register', [UsersController::class, 'createUser']);
-Route::any('/loginUser', [UsersController::class, 'loginUser']);
-
-Route::get('/songs/create', [SongController::class, 'create'])->name('song.create');
-Route::post('/songs', [SongController::class, 'store'])->name('song.store');
+require __DIR__.'/auth.php';
