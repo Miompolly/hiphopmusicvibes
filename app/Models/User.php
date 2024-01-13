@@ -23,4 +23,9 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+
+    public function songs()
+    {
+        return $this->hasMany(Song::class);
+    }
 }

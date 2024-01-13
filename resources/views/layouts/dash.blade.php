@@ -12,7 +12,7 @@
     style="background-image: url('{{ asset('images/back.jpg') }}')">
 
     <!-- Navigation -->
-    <nav class="text-white p-4 relative z-10 font-semibold">
+    <nav class="text-white p-4 relative  font-semibold">
         <div class="container mx-auto flex justify-between items-center">
             <a href="/" class="text-2xl font-extrabold">Hip-Hop Music Vibes</a>
 
@@ -25,19 +25,19 @@
 
                 @if (Route::has('login'))
 
-                        @auth
-                            <a href="{{ url('/dashboard') }}"
-                                class="font-semibold  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Upload</a>
-                        @else
-                            <a href="{{ route('login') }}"
-                                class="font-semibold  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
-                                in</a>
+                    @auth
+                        <a href="{{ url('/dashboard') }}"
+                            class="font-semibold  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">upload</a>
+                    @else
+                        <a href="{{ route('login') }}"
+                            class="font-semibold  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
+                            in</a>
 
-                            @if (Route::has('register'))
-                                <a href="{{ route('register') }}"
-                                    class="ml-4 font-semibold  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                            @endif
-                        @endauth
+                        @if (Route::has('register'))
+                            <a href="{{ route('register') }}"
+                                class="ml-4 font-semibold  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                        @endif
+                    @endauth
 
                 @endif
             </div>

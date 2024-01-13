@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\SongController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/audio', function () {
+    return view('audio');
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -29,3 +33,8 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::get('/audio', [SongController::class, 'index'])->name('songs.index');
+Route::get('/dashboard', [SongController::class, 'create'])->name('dashboard');
+Route::post('/store', [SongController::class, 'store']);
