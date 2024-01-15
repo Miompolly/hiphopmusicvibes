@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('artist');
             $table->string('cover_image');
             $table->string('audio_file');
-            $table->unsignedBigInteger('user_id');
+           
             $table->timestamps();
         });
     }

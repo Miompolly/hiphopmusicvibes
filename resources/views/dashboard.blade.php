@@ -8,7 +8,7 @@
     <div class="max-w-md mx-auto mt-8 bg-white p-6 rounded-md shadow-md">
         <h2 class="text-2xl font-semibold mb-4">Upload a Song</h2>
 
-        <form method="post" action="{{ url('store') }}" enctype="multipart/form-data">
+ <form method="post" action="{{ url('create') }}" enctype="multipart/form-data">
             @csrf
 
             <div class="mb-4">
