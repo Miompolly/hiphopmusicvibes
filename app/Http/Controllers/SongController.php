@@ -2,15 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AudioFile;
+use App\Models\CoverImage;
 use App\Models\Song;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class SongController extends Controller
 {
-
-
-    public function create(Request $request)
+    public function create()
     {
+        return view('create');
+    }
+
+    public function store(Request $request)
+    {
+        \Log::info('Store method called');
+
         $request->validate([
             'title' => 'required',
             'artist' => 'required',
@@ -18,25 +26,59 @@ class SongController extends Controller
             'audio_file' => 'required|mimes:audio/mpeg,mpga,mp3,wav|max:20480',
         ]);
 
-        $song = new Song;
+        \Log::info('Validation passed');
+
+        $song = new Song();
         $song->title = $request->title;
         $song->artist = $request->artist;
-
-        // Handle Cover Image
-        $coverImage = $request->file('cover_image');
-        $coverImageName = time() . '_' . $coverImage->getClientOriginalName();
-        $coverImage->move(public_path('images'), $coverImageName);
-        $song->cover_image = $coverImageName;
-
-        // Handle Audio File
-        $audioFile = $request->file('audio_file');
-        $audioFileName = time() . '_' . $audioFile->getClientOriginalName();
-        $audioFile->move(public_path('audio'), $audioFileName);
-        $song->audio_file = $audioFileName;
-
         $song->save();
 
-        return redirect("/");
+        \Log::info('Song saved');
+
+        // Handle Audio File
+        if ($request->hasFile('audio_file') && $request->file('audio_file')->isValid()) {
+            $audioFile = new AudioFile();
+            $audioFile->song_id = $song->id;
+
+            // Use getClientOriginalName() to get the original name of the file
+    // ...
+$audioFile = new AudioFile();
+$audioFile->song_id = $song->id;
+
+// Define $audioFileName (use your logic to set its value)
+$audioFileName = time() . '_' . $request->file('audio_file')->getClientOriginalName();
+
+$audioFile->audio_file = $audioFileName; // Now you can use it
+
+$audioFile->save();
+// ...
+
+            \Log::info('Audio file saved');
+        } else {
+            \Log::error('Error uploading audio file');
+            return back()->with('error', 'Error uploading audio file.');
+        }
+
+        // Handle Cover Image
+        if ($request->hasFile('cover_image') && $request->file('cover_image')->isValid()) {
+            $coverImage = new CoverImage();
+            $coverImage->song_id = $song->id;
+
+            // Use getClientOriginalName() to get the original name of the file
+            $coverImageName = time() . '_' . $request->file('cover_image')->getClientOriginalName();
+            $request->file('cover_image')->move(public_path('images'), $coverImageName);
+            $coverImage->path = 'images/' . $coverImageName;
+            
+            $coverImage->save();
+
+            \Log::info('Cover image saved');
+        } else {
+            \Log::error('Error uploading cover image');
+            return back()->with('error', 'Error uploading cover image.');
+        }
+
+        \Log::info('All processes completed successfully');
+        return back()->with('message', 'Song uploaded successfully!');
     }
 
 }

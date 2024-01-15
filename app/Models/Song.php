@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Song extends Model
 {
 
+    public function audioFile()
+    {
+        return $this->hasOne(AudioFile::class);
+    }
 
+    public function coverImage()
+    {
+        return $this->hasOne(CoverImage::class);
+    }
 
 }

@@ -34,6 +34,5 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::match(['get', 'post'], 'create', [SongController::class, 'create']);
-
-Route::resource('songs', SongController::class);
+Route::get('create', [SongController::class, 'create']);
+Route::post('/store', [SongController::class, 'store'])->name('store');

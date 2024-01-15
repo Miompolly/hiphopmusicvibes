@@ -1,15 +1,23 @@
-{{-- <x-app-layout>
+{{-- <x-app-layout> --}}
+    @extends("layouts.dash")
 
-
-</x-app-layout> --}}
-
-@extends("layouts.dash")
-@section('content')
+    @section('content')
     <div class="max-w-md mx-auto mt-8 bg-white p-6 rounded-md shadow-md">
         <h2 class="text-2xl font-semibold mb-4">Upload a Song</h2>
 
- <form method="post" action="{{ url('create') }}" enctype="multipart/form-data">
+        <form method="post" action="{{ route('store') }}" enctype="multipart/form-data">
             @csrf
+            @if (session('message'))
+                <div class="alert alert-success">
+                    {{ session('message') }}
+                </div>
+            @endif
+
+            @if (session('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
 
             <div class="mb-4">
                 <label for="title" class="block text-sm font-medium text-gray-600">Title:</label>
@@ -29,6 +37,7 @@
             <div class="mb-4">
                 <label for="audio_file" class="block text-sm font-medium text-gray-600">Audio File:</label>
                 <input type="file" name="audio_file" accept="audio/*" class="mt-1 p-2 w-full border rounded-md">
+
             </div>
 
             <div class="mt-4">
@@ -36,4 +45,4 @@
             </div>
         </form>
     </div>
-@endsection
+    @endsection
