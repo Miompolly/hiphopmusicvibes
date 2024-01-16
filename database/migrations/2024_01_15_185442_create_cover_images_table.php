@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('cover_images', function (Blueprint $table) {
             $table->id();
             $table->foreignId('song_id')->constrained();
-            
             $table->string('path')->nullable();
             $table->timestamps();
         });

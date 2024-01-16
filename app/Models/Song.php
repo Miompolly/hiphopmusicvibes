@@ -18,4 +18,8 @@ class Song extends Model
         return $this->hasOne(CoverImage::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
