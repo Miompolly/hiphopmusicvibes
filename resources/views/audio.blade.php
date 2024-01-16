@@ -1,7 +1,8 @@
 @extends('layouts.dash')
 
 @section('content')
-    <div class="top-0 left-0 w-full h-full text-white bg-gray-900 bg-opacity-50 flex items-center justify-center border-solid border-black">
+    <div
+        class="top-0 left-0 w-full h-full gap-4 text-white bg-gray-900 bg-opacity-50 flex items-center justify-center border-solid border-black">
 
         @foreach ($songs as $song)
             <div class="border p-8 pb-10 align-middle rounded-md">
@@ -10,21 +11,53 @@
 
 
                 @if ($song->coverImage)
-                    <img src="{{ asset($song->coverImage->path) }}" alt="Cover Image" class="w-80 h-80 object-cover rounded-full p-7 ">
+                    <img src="{{ asset($song->coverImage->path) }}" alt="Cover Image"
+                        class="w-80 h-80 object-cover rounded-full p-7 ">
                 @endif
 
                 @if ($song->audioFiles && count($song->audioFiles) > 0)
-                    <ul>
-                        @foreach ($song->audioFiles as $audioFile)
-                            <audio controls class="w-80 ">
+                <div class="audio-container">
+                    <button class="audio-control" id="prev-btn">Previous</button>
+                    @foreach ($song->audioFiles as $index => $audioFile)
+                        <div class="audio-item" data-index="{{ $index }}">
+                            <audio controls>
                                 <source src="{{ asset($audioFile->path) }}" type="audio/mpeg">
                                 Your browser does not support the audio element.
                             </audio>
-                        @endforeach
-                    </ul>
-                @else
-                    <p>No audio files available for this song.</p>
-                @endif
+                            <div class="audio-controls">
+                                <button class="audio-control play-btn" onclick="playAudio(this)">Play</button>
+                                <button class="audio-control next-btn" onclick="nextAudio()">Next</button>
+                                <button class="audio-control download-btn">
+                                    <a href="{{ asset($audioFile->path) }}" download>Download</a>
+                                </button>
+                            </div>
+                        </div>
+                    @endforeach
+                    <button class="audio-control" id="next-btn">Next</button>
+                </div>
+            @else
+                <p>No audio files available for this song.</p>
+            @endif
+
+            <style>
+                /* Hide default audio controls */
+                .custom-audio {
+                    appearance: none;
+                    -webkit-appearance: none;
+                    margin: 0;
+                    width: 100%;
+                }
+
+                .custom-audio::-webkit-media-controls-panel {
+                    display: none !important;
+                    -webkit-appearance: none;
+                }
+
+                .custom-audio::-webkit-media-controls-play-button {
+                    display: none !important;
+                    -webkit-appearance: none;
+                }
+            </style>
             </div>
         @endforeach
     </div>
