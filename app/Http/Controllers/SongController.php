@@ -24,7 +24,7 @@ class SongController extends Controller
             'title' => 'required',
             'artist' => 'required',
             'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'audio_file' => 'required|mimes:audio/mpeg,mpga,mp3,wav|max:20480',
+           
         ]);
 
         \Log::info('Validation passed');
@@ -38,24 +38,20 @@ class SongController extends Controller
 
         \Log::info('Song saved');
 
-        // Handle Audio File
         if ($request->hasFile('audio_file') && $request->file('audio_file')->isValid()) {
             $audioFile = new AudioFile();
             $audioFile->song_id = $song->id;
 
-            // Use getClientOriginalName() to get the original name of the file
-            // ...
             $audioFile = new AudioFile();
             $audioFile->song_id = $song->id;
 
 
-            // Define $audioFileName (use your logic to set its value)
             $audioFileName = time().'_'.$request->file('audio_file')->getClientOriginalName();
-
-            $audioFile->audio_file = $audioFileName; // Now you can use it
+            $request->file('audio_file')->move(public_path('audio'), $audioFileName);
+            $audioFile->path = 'audio/' . $audioFileName;
+            $audioFile->audio_file = $audioFileName;
 
             $audioFile->save();
-            // ...
 
             \Log::info('Audio file saved');
         } else {
@@ -64,12 +60,10 @@ class SongController extends Controller
             return back()->with('error', 'Error uploading audio file.');
         }
 
-        // Handle Cover Image
+
         if ($request->hasFile('cover_image') && $request->file('cover_image')->isValid()) {
             $coverImage = new CoverImage();
             $coverImage->song_id = $song->id;
-
-            // Use getClientOriginalName() to get the original name of the file
             $coverImageName = time().'_'.$request->file('cover_image')->getClientOriginalName();
             $request->file('cover_image')->move(public_path('images'), $coverImageName);
             $coverImage->path = 'images/'.$coverImageName;
