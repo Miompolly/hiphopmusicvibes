@@ -7,6 +7,7 @@ use App\Models\AudioFile;
 use App\Models\CoverImage;
 use App\Models\Song;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SongController extends Controller
 {
@@ -86,4 +87,12 @@ class SongController extends Controller
 
         return back()->with('message', 'Song uploaded successfully!');
     }
+
+    public function audio()
+    {
+        $songs = Song::with(['coverImage', 'audioFiles'])->get();
+        return view('audio', compact('songs'));
+    }
+
+
 }
