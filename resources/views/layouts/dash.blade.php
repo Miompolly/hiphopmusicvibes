@@ -18,7 +18,7 @@
 
             <div class="space-x-4">
                 <a href="/" class="hover:text-gray-300">Home</a>
-                <a href="/test" class="hover:text-gray-300">Audio</a>
+                <a href="/audioMusic" class="hover:text-gray-300">Audio</a>
                 <a href="/video" class="hover:text-gray-300">Video</a>
                 <a href="/artist" class="hover:text-gray-300">Artist</a>
                 <a href="/album" class="hover:text-gray-300">Album</a>

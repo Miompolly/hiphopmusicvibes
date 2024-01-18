@@ -1,13 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 
 use App\Models\AudioFile;
 use App\Models\CoverImage;
 use App\Models\Song;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class SongController extends Controller
 {
@@ -24,7 +23,7 @@ class SongController extends Controller
             'title' => 'required',
             'artist' => 'required',
             'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-           
+
         ]);
 
         \Log::info('Validation passed');
@@ -45,10 +44,9 @@ class SongController extends Controller
             $audioFile = new AudioFile();
             $audioFile->song_id = $song->id;
 
-
             $audioFileName = time().'_'.$request->file('audio_file')->getClientOriginalName();
             $request->file('audio_file')->move(public_path('audio'), $audioFileName);
-            $audioFile->path = 'audio/' . $audioFileName;
+            $audioFile->path = 'audio/'.$audioFileName;
             $audioFile->audio_file = $audioFileName;
 
             $audioFile->save();
@@ -59,7 +57,6 @@ class SongController extends Controller
 
             return back()->with('error', 'Error uploading audio file.');
         }
-
 
         if ($request->hasFile('cover_image') && $request->file('cover_image')->isValid()) {
             $coverImage = new CoverImage();
@@ -85,8 +82,7 @@ class SongController extends Controller
     public function audio()
     {
         $songs = Song::with(['coverImage', 'audioFiles'])->get();
-        return view('audio', compact('songs'));
+
+        return view('welcome', compact('songs'));
     }
-
-
 }

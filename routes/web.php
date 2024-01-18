@@ -37,4 +37,4 @@ require __DIR__.'/auth.php';
 Route::get('create', [SongController::class, 'create']);
 Route::post('/store', [SongController::class, 'store'])->name('store');
 
-Route::get('/audioMusic', [SongController::class, 'audio']);
+Route::get('/', [SongController::class, 'audio']);

@@ -16,48 +16,48 @@
                 @endif
 
                 @if ($song->audioFiles && count($song->audioFiles) > 0)
-                <div class="audio-container">
-                    <button class="audio-control" id="prev-btn">Previous</button>
-                    @foreach ($song->audioFiles as $index => $audioFile)
-                        <div class="audio-item" data-index="{{ $index }}">
-                            <audio controls>
-                                <source src="{{ asset($audioFile->path) }}" type="audio/mpeg">
-                                Your browser does not support the audio element.
-                            </audio>
-                            <div class="audio-controls">
-                                <button class="audio-control play-btn" onclick="playAudio(this)">Play</button>
-                                <button class="audio-control next-btn" onclick="nextAudio()">Next</button>
-                                <button class="audio-control download-btn">
-                                    <a href="{{ asset($audioFile->path) }}" download>Download</a>
-                                </button>
+                    <div class="audio-container">
+                        {{-- <button class="audio-control" id="prev-btn">Previous</button> --}}
+                        @foreach ($song->audioFiles as $index => $audioFile)
+                            <div class="audio-item" data-index="{{ $index }}">
+                                <audio controls>
+                                    <source src="{{ asset($audioFile->path) }}" type="audio/mpeg">
+                                    Your browser does not support the audio element.
+                                </audio>
+                                {{-- <div class="audio-controls">
+                                    <button class="audio-control play-btn"><img src="images/last.svg"></button>
+                                    <button class="audio-control next-btn">Next</button>
+                                    <button class="audio-control download-btn">
+                                        <a href="{{ asset($audioFile->path) }}" download>Download</a>
+                                    </button>
+                                </div> --}}
                             </div>
-                        </div>
-                    @endforeach
-                    <button class="audio-control" id="next-btn">Next</button>
-                </div>
-            @else
-                <p>No audio files available for this song.</p>
-            @endif
+                        @endforeach
 
-            <style>
-                /* Hide default audio controls */
-                .custom-audio {
-                    appearance: none;
-                    -webkit-appearance: none;
-                    margin: 0;
-                    width: 100%;
-                }
+                    </div>
+                @else
+                    <p>No audio files available for this song.</p>
+                @endif
 
-                .custom-audio::-webkit-media-controls-panel {
-                    display: none !important;
-                    -webkit-appearance: none;
-                }
+                <style>
+                    /* Hide default audio controls */
+                    .custom-audio {
+                        appearance: none;
+                        -webkit-appearance: none;
+                        margin: 0;
+                        width: 100%;
+                    }
 
-                .custom-audio::-webkit-media-controls-play-button {
-                    display: none !important;
-                    -webkit-appearance: none;
-                }
-            </style>
+                    .custom-audio::-webkit-media-controls-panel {
+                        display: none !important;
+                        -webkit-appearance: none;
+                    }
+
+                    .custom-audio::-webkit-media-controls-play-button {
+                        display: none !important;
+                        -webkit-appearance: none;
+                    }
+                </style>
             </div>
         @endforeach
     </div>

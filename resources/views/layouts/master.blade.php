@@ -8,45 +8,52 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-cover bg-no-repeat bg-center h-screen relative"
-    style="background-image: url('{{ asset('images/back.jpg') }}')">
+<body class="flex h-screen">
 
-    <!-- Navigation -->
-    <nav class="text-white p-4 relative z-10 font-semibold">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="/" class="text-2xl font-extrabold">Hip-Hop Music Vibes</a>
 
-            <div class="space-x-4">
-                <a href="/" class="hover:text-gray-300">Home</a>
-                <a href="/audioMusic" class="hover:text-gray-300">Audio</a>
-                <a href="/video" class="hover:text-gray-300">Video</a>
-                <a href="/artist" class="hover:text-gray-300">Artist</a>
-                <a href="/album" class="hover:text-gray-300">Album</a>
+    <aside class="bg-gray-900 text-white w-1/5 p-4">
+        <div class="text-2xl font-extrabold mb-8"> <a href="/" class="text-2xl font-extrabold">Hip-Hop Music Vibes</a></div>
+        <ul class="space-y-4">
+            <li><a href="/" class="hover:text-gray-300">Home</a></li>
+            <li><a href="/search" class="hover:text-gray-300">Search</a></li>
 
-                @if (Route::has('login'))
 
-                    @auth
-                        <a href="{{ url('/dashboard') }}"
-                            class="font-semibold  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Upload</a>
-                    @else
-                        <a href="{{ route('login') }}"
-                            class="font-semibold  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
-                            in</a>
+        </ul>
+    </aside>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}"
-                                class="ml-4 font-semibold  hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
-                        @endif
-                    @endauth
+    <div class="flex-1 bg-cover bg-no-repeat bg-center relative"
+        style="background-image: url('{{ asset('images/back.jpg') }}')">
+        <!-- Navigation -->
+        <nav class="text-white p-4 relative z-10 font-semibold">
+            <div class="container mx-auto flex justify-between items-center">
+                <!-- You can keep this navigation or customize as needed -->
+                <a href="/" class="text-2xl font-extrabold"></a>
 
-                @endif
+                <div class="space-x-4">
+
+                    @if (Route::has('login'))
+                        @auth
+                            <a href="{{ url('/dashboard') }}"
+                                class="font-semibold hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Upload</a>
+                        @else
+                            <a href="{{ route('login') }}"
+                                class="font-semibold hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
+                                in</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}"
+                                    class="font-semibold hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                            @endif
+                        @endauth
+                    @endif
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
 
-    <!-- Content Section -->
-    <div class="container mx-auto p-8">
-        @yield('content')
+        <!-- Content Section -->
+        <div class="container mx-auto p-8">
+            @yield('content')
+        </div>
     </div>
 
 </body>
