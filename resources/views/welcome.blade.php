@@ -2,7 +2,7 @@
 @section('title', 'Hip-Hop Music Vibes')
 
 @section('content')
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-8 text-white p-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 text-white p-1">
 
     @foreach ($songs as $song)
         <div class="bg-gray-900 bg-opacity-80 p-3 rounded-md shadow-lg">

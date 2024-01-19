@@ -12,7 +12,8 @@
 
 
     <aside class="bg-gray-900 text-white w-1/5 p-4">
-        <div class="text-2xl font-extrabold mb-8"> <a href="/" class="text-2xl font-extrabold">Hip-Hop Music Vibes</a></div>
+        <div class="text-2xl font-extrabold mb-8"> <a href="/" class="text-2xl font-extrabold">Hip-Hop Music
+                Vibes</a></div>
         <ul class="space-y-4">
             <li><a href="/" class="hover:text-gray-300">Home</a></li>
             <li><a href="/search" class="hover:text-gray-300">Search</a></li>
@@ -24,7 +25,7 @@
     <div class="flex-1 bg-cover bg-no-repeat bg-center relative"
         style="background-image: url('{{ asset('images/back.jpg') }}')">
         <!-- Navigation -->
-        <nav class="text-white p-4 relative z-10 font-semibold">
+        <nav class="text-white p-4 relative z-10 font-semibold bg-gray-900 ml-1">
             <div class="container mx-auto flex justify-between items-center">
                 <!-- You can keep this navigation or customize as needed -->
                 <a href="/" class="text-2xl font-extrabold"></a>
@@ -51,7 +52,7 @@
         </nav>
 
         <!-- Content Section -->
-        <div class="container mx-auto p-8">
+        <div class="container mx-auto p-1  ">
             @yield('content')
         </div>
     </div>
