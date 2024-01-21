@@ -8,7 +8,7 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="flex h-screen">
+<body class="flex h-screen overflow-y-auto scrollbar-hidden">
 
 
     <aside class="bg-gray-900 text-white w-1/5 p-4">
@@ -24,10 +24,10 @@
 
     <div class="flex-1 bg-cover bg-no-repeat bg-center relative"
         style="background-image: url('{{ asset('images/back.jpg') }}')">
-        <!-- Navigation -->
+
         <nav class="text-white p-4 relative z-10 font-semibold bg-gray-900 ml-1">
             <div class="container mx-auto flex justify-between items-center">
-                <!-- You can keep this navigation or customize as needed -->
+
                 <a href="/" class="text-2xl font-extrabold"></a>
 
                 <div class="space-x-4">
@@ -51,12 +51,25 @@
             </div>
         </nav>
 
-        <!-- Content Section -->
         <div class="container mx-auto p-1  ">
             @yield('content')
         </div>
     </div>
 
 </body>
+<script>
+    function hideShowAudio(audioId) {
+        // Hide all audio elements first
+        var audioItems = document.querySelectorAll('.audio-item audio');
+        audioItems.forEach(function(item) {
+            item.style.display = 'none';
+        });
+
+        // Show the clicked audio element based on the database ID
+        var audioElement = document.getElementById('audio' + audioId);
+        audioElement.style.display = 'block';
+    }
+</script>
+
 
 </html>
