@@ -2,7 +2,7 @@
 @section('title', 'Hip-Hop Music Vibes')
 
 @section('content')
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-2 text-white p-1">
+<div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 2xl:grid-cols-5 gap-2 text-white p-1 max-h-[600px] overflow-auto">
 
     @foreach ($songs as $song)
         <div class="bg-gray-900 bg-opacity-80 p-3 rounded-md shadow-lg">
@@ -11,7 +11,7 @@
 
             @if ($song->coverImage)
                 <img src="{{ asset($song->coverImage->path) }}" alt="Cover Image"
-                    class="w-full h-40 object-cover rounded-md mt-4">
+                    class="w-full h-28 object-cover rounded-md mt-4">
             @endif
 
             @if ($song->audioFiles && count($song->audioFiles) > 0)
